@@ -58,7 +58,7 @@ If you're in an engagement, stick with tried-and-true tools. If you want to expe
  - Appending a `!` to input will pass the input after it to a cmd.exe process
  - The `exit` command closes all sessions and closes the server.
 
- ## Related Projects & ## Acknowledgments
+ ## Related Projects & Acknowledgments
  
 
  - [SILENTTRINITY by byt3bl33d3r](https://github.com/byt3bl33d3r/SILENTTRINITY) - The inspiration for this project
