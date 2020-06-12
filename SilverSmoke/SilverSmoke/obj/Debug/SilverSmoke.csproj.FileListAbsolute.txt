@@ -1,0 +1,17 @@
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\ClearScriptV8-32.dll
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\ClearScriptV8-64.dll
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\v8-zlib-ia32.dll
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\v8-base-ia32.dll
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\v8-ia32.dll
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\v8-zlib-x64.dll
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\v8-base-x64.dll
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\v8-x64.dll
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\SilverSmoke.exe.config
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\SilverSmoke.exe
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\SilverSmoke.pdb
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\bin\Debug\ClearScript.xml
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\obj\Debug\SilverSmoke.csprojAssemblyReference.cache
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\obj\Debug\SilverSmoke.csproj.Fody.CopyLocal.cache
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\obj\Debug\SilverSmoke.csproj.CopyComplete
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\obj\Debug\SilverSmoke.exe
+C:\Users\austi\source\repos\SilverSmoke\SilverSmoke\obj\Debug\SilverSmoke.pdb
