@@ -175,14 +175,17 @@ namespace SilverSmoke
             compilerParameters.ReferencedAssemblies.AddRange(dlls);
             CSharpCodeProvider cSharpCodeProvider = new CSharpCodeProvider();
             CompilerResults compilerResults = cSharpCodeProvider.CompileAssemblyFromSource(compilerParameters, code);
+            StringBuilder errBuilder = new StringBuilder();
             if (compilerResults.Errors.HasErrors)
             {
                 string text = "Compile error: ";
                 foreach (CompilerError compilerError in compilerResults.Errors)
                 {
-                    text = text + "\r\n" + compilerError.ToString();
+                    errBuilder.Append("\r\n" + compilerError.ToString());
                 }
-                streamWriter.WriteLine(text);
+                streamWriter.WriteLine(errBuilder.ToString());
+                errBuilder.Remove(0, errBuilder.Length);
+                errBuilder.Clear();
             }
             Module module = compilerResults.CompiledAssembly.GetModules()[0];
             Type type = null;
