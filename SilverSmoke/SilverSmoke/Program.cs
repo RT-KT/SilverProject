@@ -178,7 +178,7 @@ namespace SilverSmoke
             StringBuilder errBuilder = new StringBuilder();
             if (compilerResults.Errors.HasErrors)
             {
-                string text = "Compile error: ";
+                errBuilder.Append("Compile error: ");
                 foreach (CompilerError compilerError in compilerResults.Errors)
                 {
                     errBuilder.Append("\r\n" + compilerError.ToString());
