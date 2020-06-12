@@ -1,18 +1,13 @@
 import threading
-import _thread
 import socket
 import ssl
 import shlex
-import code
-import sys
 import os
 import time
-import pdb
 from prettytable import PrettyTable
-from colorama import init 
-from termcolor import colored 
-  
-init(convert=True) 
+from colorama import init
+from termcolor import colored
+init(convert=True)
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
 context.load_cert_chain('ssl/certificate.crt', 'ssl/privateKey.key')
 connList = []
@@ -48,7 +43,7 @@ def ReadLoop(conn):
                         print(dat)
             else:
                 pass
-        except ConnectionResetError as e:
+        except ConnectionResetError:
             for index, connection in enumerate(connList):
                 try:
                     connection.send(b"//SIGNAL-CHECK-ALIVE")
@@ -72,7 +67,7 @@ def WriteLoop(conn):
         inp = input("SilverFlame"+currentModule+">")
         try:
             ProcessInput(inp, connList[activeConn])
-        except (ConnectionResetError, IndexError) as e:
+        except (ConnectionResetError, IndexError):
             print(colored("[-] Client: "+str(activeConn)+" is disconnected.","red"))
             if len(connList) > 0:
                 print(colored("[*] Set active connection to 0.","cyan"))
@@ -96,7 +91,7 @@ def UseFunc(inn, conn):
             print(colored('[*] Using module /'+filepath, 'cyan'))
             filepath=filepath.replace("\\","/")
             currentModule = "/"+filepath
-    except OSError as e:
+    except OSError:
         print(colored("[-] That module does not exist :(","red"))
         return 1
     
