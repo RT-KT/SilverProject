@@ -149,7 +149,6 @@ def ShowFunc(inn, conn):
         print("===UNSET OPTIONS===")
         for optionx in optionsList:
             print(optionx)
-    pass
 def PromptFunc(inn, conn):
     pass
 def InteractFunc(inn, conn):
