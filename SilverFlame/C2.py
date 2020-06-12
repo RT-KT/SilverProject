@@ -94,7 +94,6 @@ def UseFunc(inn, conn):
     except OSError:
         print(colored("[-] That module does not exist :(","red"))
         return 1
-    
     lines=moduleSrc.splitlines()
     language = lines[0]
     if language == "//C#":
@@ -124,7 +123,6 @@ def RunFunc(inn, conn):
         moduleSrc=moduleSrc.replace(option,optionsDict[option])
     payload = "//MODULE-START\n" + moduleSrc + "\n" + "//MODULE-END\n\r\n"
     conn.sendall(payload.encode('utf-8'))
-    pass
 def SetFunc(inn, conn):
     global optionsDict
     global optionsList
