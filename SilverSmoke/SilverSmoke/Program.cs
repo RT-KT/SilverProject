@@ -110,6 +110,9 @@ namespace SilverSmoke
                     jsEngine.AddHostObject("sw", streamWriter);
                     jsEngine.AddHostObject("rdr", rdr);
                     jsEngine.AddHostObject("xHost", new ExtendedHostFunctions());
+                    jsEngine.AddHostType("DllImports", typeof(DllImports));
+                    jsEngine.AddHostType("Win32", typeof(SilverSmoke.Execution.Win32));
+                    jsEngine.AddHostType("Native", typeof(SilverSmoke.Execution.Native));
                     var typeCollection = new HostTypeCollection("mscorlib", "System", "System.Core");
                     jsEngine.AddHostObject("clr", typeCollection);
                     try
