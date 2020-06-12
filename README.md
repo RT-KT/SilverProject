@@ -1,5 +1,7 @@
 # SilverProject: A New .NET DLR Based Post Exploitation Tool
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3027449b9f8f42b189fb417a62cfed9e)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RT-KT/SilverProject&amp;utm_campaign=Badge_Grade)
+
 SilverProject includes two sub-projects: **SilverSmoke**, the payload written in C#, and **SilverFlame** the Command and Control server, written in Python 3.
 
 The payload, **SilverSmoke**, uses the Microsoft's ClearScript C# extension for embedding scripting in .NET applications. Using this package allows the payload size to be kept much smaller than using an alternative embedded language, such as IronPython or Boo. This is because the ClearScript package has the ability to use the already built-in JScript interpreter for interpreting JavaScript, while also giving it access to the full .NET Framework. 
