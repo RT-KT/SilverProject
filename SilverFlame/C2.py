@@ -14,7 +14,7 @@ from termcolor import colored
   
 init(convert=True) 
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-context.load_cert_chain('certificate.crt', 'privateKey.key')
+context.load_cert_chain('ssl/certificate.crt', 'ssl/privateKey.key')
 connList = []
 activeConn = 0
 optionsDict = {}
