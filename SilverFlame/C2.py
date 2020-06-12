@@ -230,5 +230,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
                 except BlockingIOError:
                     pass
                 if cont==False:
-                    break #try to exit cleanly
+                    break
                 time.sleep(0.1)
