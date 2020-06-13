@@ -72,5 +72,7 @@ If you're in an engagement, stick with tried-and-true tools. If you want to expe
  - Team server
  - Lotsa modules
  - Better logging
+ - Wiki documentation for creating modules & plugins
+ - GUI?
 
 
